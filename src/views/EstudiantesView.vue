@@ -1,0 +1,268 @@
+<template>
+  <div class="estudiante">
+
+    <!-- Navegación de pestañas -->
+    <div class="tabs-nav">
+      <button
+        v-for="tab in tabs"
+        :key="tab.id"
+        :class="['tab-btn', { 'tab-btn--active': tabActiva === tab.id }]"
+        @click="tabActiva = tab.id"
+      >
+        {{ tab.label }}
+      </button>
+    </div>
+
+    <!-- Pestaña: Productos -->
+    <div class="components" v-show="tabActiva === 'productos'">
+      <FormularioEstudiantes @actualizar-tabla="actualizarTablaProductos" />
+      <TablaEstudiantes ref="tablaProductos" />
+    </div>
+
+    <!-- Pestaña: Pedidos -->
+    <div class="components" v-show="tabActiva === 'pedidos'">
+      <FormularioPedidos @actualizar-tabla="actualizarTablaPedidos" />
+      <TablaPedidos ref="tablaPedidos" />
+    </div>
+
+    <!-- Pestaña: Envíos -->
+    <div class="components" v-show="tabActiva === 'envios'">
+      <FormularioEnvios @actualizar-tabla="actualizarTablaEnvios" />
+      <TablaEnvios ref="tablaEnvios" />
+    </div>
+
+  </div>
+</template>
+
+<script>
+import FormularioEstudiantes from '@/components/FormularioEstudiantes.vue';
+import TablaEstudiantes      from '@/components/TablaEstudiantes.vue';
+import FormularioPedidos     from '@/components/FormularioPedidos.vue';
+import TablaPedidos          from '@/components/TablaPedidos.vue';
+import FormularioEnvios      from '@/components/FormularioEnvios.vue';
+import TablaEnvios           from '@/components/TablaEnvios.vue';
+
+export default {
+  name: 'EstudiantesView',
+
+  components: {
+    FormularioEstudiantes,
+    TablaEstudiantes,
+    FormularioPedidos,
+    TablaPedidos,
+    FormularioEnvios,
+    TablaEnvios,
+  },
+
+  data() {
+    return {
+      tabActiva: 'productos',
+      tabs: [
+        { id: 'productos', label: 'Productos' },
+        { id: 'pedidos',   label: 'Pedidos'   },
+        { id: 'envios',    label: 'Envíos'    },
+      ],
+    };
+  },
+
+  methods: {
+    actualizarTablaProductos() {
+      this.$refs.tablaProductos.obtenerProductos();
+    },
+    actualizarTablaPedidos() {
+      this.$refs.tablaPedidos.obtenerPedidos();
+    },
+    actualizarTablaEnvios() {
+      this.$refs.tablaEnvios.obtenerEnvios();
+    },
+  },
+};
+</script>
+
+<style>
+/* ── Globales ─────────────────────────────────────────── */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.components {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: 1fr;
+}
+
+.container {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+/* ── Formulario ───────────────────────────────────────── */
+form {
+  padding: 2%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+/* ── Botones generales ────────────────────────────────── */
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* ── Tabla ────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* ── Pestañas ─────────────────────────────────────────── */
+.tabs-nav {
+  display: flex;
+  border-bottom: 2px solid #007bff;
+  padding: 1rem 1rem 0;
+  background-color: #f0f0f0;
+}
+
+.tabs-nav .tab-btn {
+  display: inline-block;
+  width: auto;
+  padding: 10px 28px;
+  background-color: transparent;
+  color: #2c3e50;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 0;
+  margin-right: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tabs-nav .tab-btn:hover {
+  background-color: #dceeff;
+  color: #007bff;
+}
+
+.tabs-nav .tab-btn--active {
+  background-color: #fff;
+  color: #007bff;
+  border-color: #007bff;
+  border-bottom: 2px solid #fff;
+  margin-bottom: -2px;
+}
+
+.tabs-nav .tab-btn--active:hover {
+  background-color: #fff;
+}
+
+/* ── Items dinámicos (FormularioPedidos) ──────────────── */
+.items-section {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+.items-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #2c3e50;
+}
+
+.item-row {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.item-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.item-fields .form-group {
+  margin-bottom: 0;
+}
+
+.btn-quitar {
+  background-color: #dc3545;
+  width: auto;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.btn-quitar:hover {
+  background-color: #b02a37;
+}
+
+.btn-agregar {
+  background-color: #28a745;
+  width: auto;
+  padding: 8px 16px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+.btn-agregar:hover {
+  background-color: #1e7e34;
+}
+</style>
