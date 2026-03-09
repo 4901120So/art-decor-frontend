@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkfront_sena"]=self["webpackChunkfront_sena"]||[]).push([[594],{603:function(n,t,u){u.r(t),u.d(t,{default:function(){return f}});var a=u(6768);const e={class:"about"};function r(n,t){return(0,a.uX)(),(0,a.CE)("div",e,[...t[0]||(t[0]=[(0,a.Lk)("h1",null,"This is an about page",-1)])])}var s=u(1241);const c={},o=(0,s.A)(c,[["render",r]]);var f=o}}]);
+//# sourceMappingURL=about.cb63503a.js.map
