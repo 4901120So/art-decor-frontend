@@ -35,7 +35,7 @@ export default {
 
   methods: {
     obtenerUsuarios() {
-      axios.get("http://localhost:8081/api/usuarios/listar")
+      axios.get("https://modulo3-production-d9e8.up.railway.app/api/usuarios/listar")
       .then((response) => {
         this.usuarios = response.data;
       })

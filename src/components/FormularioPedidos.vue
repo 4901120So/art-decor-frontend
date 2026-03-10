@@ -122,7 +122,7 @@ export default {
     },
 
     guardar() {
-      axios.post("http://localhost:8081/api/pedidos", this.construirPayload())
+      axios.post("https://modulo3-production-d9e8.up.railway.app/api/pedidos", this.construirPayload())
       .then((response) => {
         console.log("pedido registrado con éxito", response.data);
         alert("Pedido registrado con éxito. ID asignado: " + response.data.id);
@@ -138,7 +138,7 @@ export default {
 
     consultar() {
       if (!this.pedidoId) { alert("Ingresa un ID de pedido."); return; }
-      axios.get("http://localhost:8081/api/pedidos/" + this.pedidoId)
+      axios.get("https://modulo3-production-d9e8.up.railway.app/api/pedidos/" + this.pedidoId)
       .then((response) => {
         const data = response.data;
         this.clienteId = data.cliente?.id ?? "";
@@ -160,7 +160,7 @@ export default {
 
     actualizar() {
       if (!this.pedidoId) { alert("Ingresa un ID de pedido."); return; }
-      axios.put("http://localhost:8081/api/pedidos/actualizar/" + this.pedidoId, this.construirPayload())
+      axios.put("https://modulo3-production-d9e8.up.railway.app/api/pedidos/actualizar/" + this.pedidoId, this.construirPayload())
       .then((response) => {
         console.log("pedido actualizado con éxito", response.data);
         alert("Pedido actualizado con éxito.");
@@ -175,7 +175,7 @@ export default {
 
     eliminar() {
       if (!this.pedidoId) { alert("Ingresa un ID de pedido."); return; }
-      axios.delete("http://localhost:8081/api/pedidos/" + this.pedidoId)
+      axios.delete("https://modulo3-production-d9e8.up.railway.app/api/pedidos/" + this.pedidoId)
       .then(() => {
         alert("Pedido eliminado con éxito.");
         this.resetForm();

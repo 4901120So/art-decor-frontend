@@ -2,7 +2,7 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> | 
-    <router-link to="/estudiantes">Estudiantes</router-link>
+    <router-link to="/arte-decoraciones">Arte y Decoraciones</router-link>
   </nav>
   <router-view/>
 </template>

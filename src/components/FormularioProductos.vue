@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Formulario Estudiantes</h1>
+    <h1>Formulario Productos</h1>
 
     <form id="formulario-estudiantes" @submit.prevent="guardar">
       <div class="form-group">
@@ -72,7 +72,7 @@
         methods:{
 
           guardar() {
-              axios.post("http://localhost:8081/api/productos", {
+              axios.post("https://modulo3-production-d9e8.up.railway.app/api/productos", {
                   Id_Producto: this.Id_Producto,
                   color: this.color,
                   descripcion: this.descripcion,

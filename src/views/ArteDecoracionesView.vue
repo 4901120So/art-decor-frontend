@@ -15,8 +15,8 @@
 
     <!-- Pestaña: Productos -->
     <div class="components" v-show="tabActiva === 'productos'">
-      <FormularioEstudiantes @actualizar-tabla="actualizarTablaProductos" />
-      <TablaEstudiantes ref="tablaProductos" />
+      <FormularioProductos @actualizar-tabla="actualizarTablaProductos" />
+      <TablaProductos ref="tablaProductos" />
     </div>
 
     <!-- Pestaña: Pedidos -->
@@ -35,19 +35,19 @@
 </template>
 
 <script>
-import FormularioEstudiantes from '@/components/FormularioEstudiantes.vue';
-import TablaEstudiantes      from '@/components/TablaEstudiantes.vue';
+import FormularioProductos from '@/components/FormularioProductos.vue';
+import TablaProductos      from '@/components/TablaProductos.vue';
 import FormularioPedidos     from '@/components/FormularioPedidos.vue';
 import TablaPedidos          from '@/components/TablaPedidos.vue';
 import FormularioEnvios      from '@/components/FormularioEnvios.vue';
 import TablaEnvios           from '@/components/TablaEnvios.vue';
 
 export default {
-  name: 'EstudiantesView',
+  name: 'ArteDecoracionesView',
 
   components: {
-    FormularioEstudiantes,
-    TablaEstudiantes,
+    FormularioProductos,
+    TablaProductos,
     FormularioPedidos,
     TablaPedidos,
     FormularioEnvios,

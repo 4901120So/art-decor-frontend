@@ -54,7 +54,7 @@ export default {
 
   methods: {
     guardar() {
-      axios.post("http://localhost:8081/api/usuarios", {
+      axios.post("https://modulo3-production-d9e8.up.railway.app/api/usuarios", {
         Id_Usuario: this.Id_Usuario,
         nombre:     this.nombre,
         apellido:   this.apellido,
@@ -78,7 +78,7 @@ export default {
     },
 
     consultar() {
-      axios.get("http://localhost:8081/api/usuarios/" + this.Id_Usuario)
+      axios.get("https://modulo3-production-d9e8.up.railway.app/api/usuarios/" + this.Id_Usuario)
       .then((response) => {
         this.nombre   = response.data.nombre;
         this.apellido = response.data.apellido;
@@ -91,7 +91,7 @@ export default {
     },
 
     actualizar() {
-      axios.put("http://localhost:8081/api/usuarios/actualizar/" + this.Id_Usuario, {
+      axios.put("https://modulo3-production-d9e8.up.railway.app/api/usuarios/actualizar/" + this.Id_Usuario, {
         Id_Usuario: this.Id_Usuario,
         nombre:     this.nombre,
         apellido:   this.apellido,
@@ -109,7 +109,7 @@ export default {
     },
 
     eliminar() {
-      axios.delete("http://localhost:8081/api/usuarios/" + this.Id_Usuario)
+      axios.delete("https://modulo3-production-d9e8.up.railway.app/api/usuarios/" + this.Id_Usuario)
       .then(() => {
         alert("Usuario eliminado con éxito");
         this.Id_Usuario = "";
